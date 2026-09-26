@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCDC HSE — Training Monitor</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">HSE</div>
+      <div class="brand-text">
+        <div class="brand-title">CCDC Training Monitor</div>
+        <div class="brand-sub">Rig workforce &amp; HSE records</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-view="matrix">
+        <span class="nav-dot"></span>Training Matrix
+      </button>
+      <button class="nav-item" data-view="employees">
+        <span class="nav-dot"></span>Employees
+      </button>
+      <button class="nav-item" data-view="add-employee">
+        <span class="nav-dot"></span>Add Employee
+      </button>
+      <button class="nav-item" data-view="add-training">
+        <span class="nav-dot"></span>Add Training
+      </button>
+      <button class="nav-item" data-view="courses">
+        <span class="nav-dot"></span>Courses
+      </button>
+      <button class="nav-item" data-view="rigs">
+        <span class="nav-dot"></span>Rigs
+      </button>
+      <button class="nav-item" data-view="dashboard">
+        <span class="nav-dot"></span>Dashboard
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div id="conn-status" class="conn-status">Connecting…</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- TRAINING MATRIX -->
+    <section id="view-matrix" class="view active">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Overall Training Matrix</h1></div>
+      </header>
+
+      <div class="filter-row" id="matrix-filters"></div>
+      <div id="matrix-body"></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="view-dashboard" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Dashboard</h1></div>
+      </header>
+      <div id="dashboard-body"></div>
+    </section>
+
+    <!-- EMPLOYEES -->
+    <section id="view-employees" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Employees</h1>
+        <p class="muted">Search and filter employees by name, rig and Assistant Driller.</p></div>
+      </header>
+      <div class="filter-row" id="employees-filters"></div>
+      <p class="muted small" id="employees-count"></p>
+      <div id="employees-table"></div>
+    </section>
+
+    <!-- ADD EMPLOYEE -->
+    <section id="view-add-employee" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Add New Employee</h1>
+        <p class="muted">NID is optional. If an NID already exists, that employee is treated as a transfer instead of a duplicate.</p></div>
+      </header>
+      <div id="add-employee-body"></div>
+    </section>
+
+    <!-- ADD TRAINING -->
+    <section id="view-add-training" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Add Training</h1>
+        <p class="muted">Pick a rig and Assistant Driller, select employees, then log one training course for all of them.</p></div>
+      </header>
+      <div id="add-training-body"></div>
+    </section>
+
+    <!-- EMPLOYEE DETAILS -->
+    <section id="view-details" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><button class="btn-link" id="back-to-employees">← Back to Employees</button>
+        <h1 id="details-name">Employee Details</h1></div>
+      </header>
+      <div id="details-body"></div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="view-courses" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Courses</h1>
+        <p class="muted">Training courses available to assign. Course IDs are short codes used across training records.</p></div>
+      </header>
+      <div id="courses-body"></div>
+    </section>
+
+    <!-- RIGS -->
+    <section id="view-rigs" class="view">
+      <header class="view-header">
+        <div class="view-header-inner"><h1>Rigs</h1>
+        <p class="muted">Rigs available for employee assignment and transfer.</p></div>
+      </header>
+      <div id="rigs-body"></div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast-stack" class="toast-stack"></div>
+<div id="print-report"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
