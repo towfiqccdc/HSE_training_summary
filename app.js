@@ -378,9 +378,7 @@ function fmtDate(v){
 }
 
 function maskNid(v){
-  const nid = clean(v);
-  if (!nid) return "";
-  return "*".repeat(Math.max(0, nid.length - 4)) + nid.slice(-4);
+return clean(v);
 }
 
 function sortByDesignation(list){
